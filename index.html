@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tierra de Aventuras | Centro Recreativo Nueva Era</title>
-  <meta name="description" content="Colonia de vacaciones Tierra de Aventuras en el Centro Recreativo Nueva Era, Ushuaia.">
-  <meta name="theme-color" content="#f5922b">
+  <meta name="description" content="Colonia de vacaciones Tierra de Aventuras en el bosque andino patagónico. Centro Recreativo Nueva Era, Ushuaia.">
+  <meta name="theme-color" content="#1b4d3e">
+  <!-- Open Graph para compartir por WhatsApp / Redes -->
+  <meta property="og:title" content="Tierra de Aventuras | Colonia de Vacaciones en Ushuaia">
+  <meta property="og:description" content="Explorá el bosque andino patagónico: caminatas, campamentos, cocina, arte y amigos nuevos en el Centro Recreativo Nueva Era.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo-tierra-de-aventuras.png">
   <link rel="icon" href="assets/logo-tierra-de-aventuras.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,8 +39,11 @@
     </ul>
   </nav>
   <div class="nav-acciones">
-    <button class="icon-btn" id="themeBtn" aria-label="Cambiar tema">🌙</button>
-    <button class="icon-btn" id="shareBtn" aria-label="Compartir">↗</button>
+    <button class="theme-toggle" id="themeBtn" aria-label="Cambiar entre día y noche en el bosque" title="Cambiar Día / Noche">
+      <span class="theme-icono" id="themeIcono" aria-hidden="true">☀️</span>
+      <span class="theme-texto" id="themeTexto">Día</span>
+    </button>
+    <button class="icon-btn" id="shareBtn" aria-label="Compartir página" title="Compartir">↗</button>
     <a href="#reserva" class="btn btn-primario btn-sm">Inscribirme</a>
     <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
@@ -43,10 +51,258 @@
 
 <main id="main">
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO: BOSQUE ANDINO PATAGÓNICO (DÍA / NOCHE) ===== -->
 <section class="hero" id="inicio">
-  <div class="hero-sol" aria-hidden="true"></div>
-  <div class="hero-capas" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <!-- Escenario ilustrado multicapa SVG -->
+  <div class="escena-bosque" aria-hidden="true">
+    <svg class="bosque-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Gradientes Sol y Luna -->
+        <radialGradient id="haloSol" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fff9d2" stop-opacity="1"/>
+          <stop offset="35%" stop-color="#ffd15c" stop-opacity="0.65"/>
+          <stop offset="70%" stop-color="#f5922b" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#f5922b" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="haloLuna" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#e8f4fc" stop-opacity="0.95"/>
+          <stop offset="35%" stop-color="#9ad4f5" stop-opacity="0.45"/>
+          <stop offset="75%" stop-color="#3b82f6" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Gradientes Montañas (variables CSS reactivas al tema) -->
+        <linearGradient id="gradMontLejana" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="var(--m-lejana-top)"/>
+          <stop offset="100%" stop-color="var(--m-lejana-bot)"/>
+        </linearGradient>
+        <linearGradient id="gradMontMedia" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="var(--m-media-top)"/>
+          <stop offset="100%" stop-color="var(--m-media-bot)"/>
+        </linearGradient>
+        <linearGradient id="gradLaderas" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="var(--ladera-top)"/>
+          <stop offset="100%" stop-color="var(--ladera-bot)"/>
+        </linearGradient>
+        <linearGradient id="gradRio" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--rio-top)"/>
+          <stop offset="50%" stop-color="var(--rio-mid)"/>
+          <stop offset="100%" stop-color="var(--rio-bot)"/>
+        </linearGradient>
+
+        <!-- Patrón de pino/coihue reutilizable -->
+        <g id="arbol-coihue">
+          <rect x="-3" y="55" width="6" height="22" fill="var(--tronco)"/>
+          <polygon points="0,0 -22,32 -10,32 -28,55 28,55 10,32 22,32" fill="currentColor"/>
+          <polygon points="0,0 0,55 28,55 10,32 22,32" fill="var(--luz-copa)" opacity="0.28"/>
+        </g>
+        <g id="arbol-lenga">
+          <rect x="-2.5" y="46" width="5" height="18" fill="var(--tronco)"/>
+          <path d="M0,4 C-18,14 -24,34 -14,48 L14,48 C24,34 18,14 0,4 Z" fill="currentColor"/>
+          <path d="M0,4 C14,14 20,34 12,48 L0,48 Z" fill="var(--luz-copa)" opacity="0.25"/>
+        </g>
+      </defs>
+
+      <!-- 1. ESTRELLAS Y VÍA LÁCTEA AUSTRAL (Solo visibles de noche) -->
+      <g class="capa-estrellas" data-parallax="0.05">
+        <g fill="#ffffff">
+          <circle cx="120" cy="80" r="1.8" class="estrella e1"/>
+          <circle cx="230" cy="140" r="1.2" class="estrella e2"/>
+          <circle cx="340" cy="60" r="2.2" class="estrella e3"/>
+          <circle cx="480" cy="110" r="1.5" class="estrella e1"/>
+          <circle cx="590" cy="55" r="2.5" class="estrella e4"/>
+          <circle cx="710" cy="130" r="1.3" class="estrella e2"/>
+          <circle cx="840" cy="70" r="2" class="estrella e3"/>
+          <circle cx="960" cy="150" r="1.4" class="estrella e1"/>
+          <circle cx="1090" cy="65" r="2.3" class="estrella e4"/>
+          <circle cx="1240" cy="115" r="1.6" class="estrella e2"/>
+          <circle cx="1360" cy="75" r="2.1" class="estrella e3"/>
+          <circle cx="170" cy="220" r="1.4" class="estrella e4"/>
+          <circle cx="420" cy="195" r="1.9" class="estrella e2"/>
+          <circle cx="660" cy="210" r="1.5" class="estrella e1"/>
+          <circle cx="910" cy="225" r="2.1" class="estrella e3"/>
+          <circle cx="1180" cy="205" r="1.3" class="estrella e4"/>
+        </g>
+        <!-- Constelación Cruz del Sur -->
+        <g class="cruz-del-sur" stroke="rgba(180,225,255,0.45)" stroke-width="1" fill="#e0f4ff">
+          <line x1="620" y1="78" x2="645" y2="142"/>
+          <line x1="608" y1="112" x2="656" y2="104"/>
+          <circle cx="620" cy="78" r="3"/>
+          <circle cx="645" cy="142" r="3.4"/>
+          <circle cx="608" cy="112" r="2.6"/>
+          <circle cx="656" cy="104" r="2.4"/>
+          <circle cx="642" cy="122" r="1.6"/>
+        </g>
+      </g>
+
+      <!-- 2. ASTROS: SOL DE DÍA Y LUNA NOCTURNA -->
+      <g class="capa-astros" data-parallax="0.12">
+        <!-- Sol Patagónico -->
+        <g class="astro-sol" transform="translate(1130, 165)">
+          <circle cx="0" cy="0" r="170" fill="url(#haloSol)"/>
+          <g class="rayos-sol" stroke="#ffe484" stroke-width="3" stroke-linecap="round" opacity="0.55">
+            <line x1="0" y1="-95" x2="0" y2="-122"/>
+            <line x1="67" y1="-67" x2="86" y2="-86"/>
+            <line x1="95" y1="0" x2="122" y2="0"/>
+            <line x1="67" y1="67" x2="86" y2="86"/>
+            <line x1="0" y1="95" x2="0" y2="122"/>
+            <line x1="-67" y1="67" x2="-86" y2="86"/>
+            <line x1="-95" y1="0" x2="-122" y2="0"/>
+            <line x1="-67" y1="-67" x2="-86" y2="-86"/>
+          </g>
+          <circle cx="0" cy="0" r="56" fill="#fff7cc"/>
+          <circle cx="0" cy="0" r="48" fill="#ffd447"/>
+        </g>
+
+        <!-- Luna Patagónica con cráteres y reflejo -->
+        <g class="astro-luna" transform="translate(1130, 165)">
+          <circle cx="0" cy="0" r="185" fill="url(#haloLuna)"/>
+          <circle cx="0" cy="0" r="88" fill="rgba(186, 230, 253, 0.14)"/>
+          <circle cx="0" cy="0" r="50" fill="#f2f8fc"/>
+          <path d="M-12,-48 A50,50 0 0,0 -12,48 A38,48 0 0,1 -12,-48 Z" fill="#cde2f0" opacity="0.35"/>
+          <!-- Cráteres sutiles -->
+          <circle cx="-14" cy="-12" r="9" fill="#d3e5f2" opacity="0.7"/>
+          <circle cx="18" cy="14" r="12" fill="#d3e5f2" opacity="0.65"/>
+          <circle cx="10" cy="-20" r="6" fill="#d3e5f2" opacity="0.55"/>
+          <circle cx="-18" cy="20" r="5" fill="#d3e5f2" opacity="0.5"/>
+        </g>
+      </g>
+
+      <!-- 3. NUBES Y CÓNDORES/AVES (Día) -->
+      <g class="capa-nubes" data-parallax="0.16">
+        <g fill="var(--nube-color)" opacity="0.82">
+          <path d="M160,150 Q180,130 210,138 Q235,118 270,132 Q300,128 315,150 Q335,155 330,172 L145,172 Q140,155 160,150 Z"/>
+          <path d="M760,105 Q780,88 808,95 Q830,78 860,92 Q885,90 895,110 L748,110 Q745,98 760,105 Z"/>
+        </g>
+        <!-- Bandada de cauquenes / cóndores lejanos -->
+        <g class="aves-dia" stroke="var(--ave-color)" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <path d="M470,165 Q478,157 485,164 Q492,157 500,165"/>
+          <path d="M510,152 Q516,146 522,151 Q528,146 534,152"/>
+          <path d="M495,178 Q501,172 507,177 Q513,172 519,178"/>
+        </g>
+      </g>
+
+      <!-- 4. CORDILLERA ANDINA LEJANA (Picos aguja + Glaciares) -->
+      <g class="capa-montanas-lejanas" data-parallax="0.18">
+        <polygon points="-40,560 95,310 210,430 345,235 490,410 620,265 765,395 920,215 1075,385 1215,275 1350,390 1480,295 1480,650 -40,650" fill="url(#gradMontLejana)"/>
+        <!-- Cara en sombra / relieve de las montañas -->
+        <polygon points="95,310 210,430 140,560 95,310" fill="var(--m-sombra)" opacity="0.32"/>
+        <polygon points="345,235 490,410 385,560 345,235" fill="var(--m-sombra)" opacity="0.32"/>
+        <polygon points="620,265 765,395 660,560 620,265" fill="var(--m-sombra)" opacity="0.32"/>
+        <polygon points="920,215 1075,385 965,560 920,215" fill="var(--m-sombra)" opacity="0.35"/>
+        <polygon points="1215,275 1350,390 1255,560 1215,275" fill="var(--m-sombra)" opacity="0.32"/>
+        <!-- Cumbres nevadas iluminadas por el sol o la luna -->
+        <polygon points="95,310 62,375 88,368 98,386 112,366 135,375" fill="var(--nieve-cumbre)"/>
+        <polygon points="345,235 298,325 325,312 346,338 368,310 398,324" fill="var(--nieve-cumbre)"/>
+        <polygon points="620,265 580,335 606,325 622,345 642,322 668,334" fill="var(--nieve-cumbre)"/>
+        <polygon points="920,215 866,315 898,302 922,332 946,298 985,316" fill="var(--nieve-cumbre)"/>
+        <polygon points="1215,275 1175,342 1202,332 1218,352 1236,330 1262,342" fill="var(--nieve-cumbre)"/>
+      </g>
+
+      <!-- 5. CORDÓN MONTAÑOSO MEDIO -->
+      <g class="capa-montanas-medias" data-parallax="0.26">
+        <path d="M-40,620 L130,395 L275,495 L455,345 L640,485 L815,360 L1010,490 L1165,375 L1335,475 L1480,390 L1480,720 L-40,720 Z" fill="url(#gradMontMedia)"/>
+        <!-- Nieve en colinas medias -->
+        <polygon points="455,345 415,402 442,394 458,412 475,392 502,404" fill="var(--nieve-media)" opacity="0.85"/>
+        <polygon points="815,360 778,415 802,405 818,424 835,404 862,414" fill="var(--nieve-media)" opacity="0.85"/>
+        <polygon points="1165,375 1132,422 1155,414 1168,430 1184,412 1208,422" fill="var(--nieve-media)" opacity="0.85"/>
+      </g>
+
+      <!-- 6. LADERAS SUBANTÁRTICAS Y BOSQUE LEJANO -->
+      <g class="capa-bosque-medio" data-parallax="0.34">
+        <path d="M-40,640 Q220,510 520,585 T1060,560 Q1270,520 1480,575 L1480,820 L-40,820 Z" fill="url(#gradLaderas)"/>
+        <!-- Silueta de lengas y coihues en segunda línea -->
+        <g color="var(--bosque-medio)">
+          <use href="#arbol-coihue" transform="translate(70, 515) scale(1.1)"/>
+          <use href="#arbol-lenga" transform="translate(135, 505) scale(1.25)"/>
+          <use href="#arbol-coihue" transform="translate(210, 495) scale(1.35)"/>
+          <use href="#arbol-lenga" transform="translate(290, 512) scale(1.1)"/>
+          <use href="#arbol-coihue" transform="translate(360, 522) scale(1.2)"/>
+          <use href="#arbol-coihue" transform="translate(690, 520) scale(1.25)"/>
+          <use href="#arbol-lenga" transform="translate(760, 512) scale(1.15)"/>
+          <use href="#arbol-coihue" transform="translate(835, 500) scale(1.35)"/>
+          <use href="#arbol-lenga" transform="translate(1090, 502) scale(1.2)"/>
+          <use href="#arbol-coihue" transform="translate(1160, 490) scale(1.4)"/>
+          <use href="#arbol-lenga" transform="translate(1240, 508) scale(1.15)"/>
+          <use href="#arbol-coihue" transform="translate(1320, 512) scale(1.3)"/>
+        </g>
+      </g>
+
+      <!-- 7. PRADERA Y RÍO PATAGÓNICO CON REFLEJOS DE LUZ -->
+      <g class="capa-pradera-rio" data-parallax="0.42">
+        <!-- Suelo del valle -->
+        <path d="M-40,685 Q360,605 740,655 T1480,635 L1480,900 L-40,900 Z" fill="var(--valle-suelo)"/>
+        <!-- Río de deshielo serpenteante -->
+        <path d="M535,585 C500,625 630,655 585,700 C535,748 390,785 455,900 L865,900 C775,785 695,745 690,695 C685,650 585,622 565,585 Z" fill="url(#gradRio)"/>
+        <!-- Orillas y piedras del río -->
+        <ellipse cx="485" cy="790" rx="26" ry="9" fill="var(--piedra-rio)"/>
+        <ellipse cx="735" cy="815" rx="34" ry="11" fill="var(--piedra-rio)"/>
+        <ellipse cx="535" cy="720" rx="18" ry="6" fill="var(--piedra-rio)"/>
+        <!-- Líneas de corriente y reflejo solar/lunar en el agua -->
+        <g stroke="var(--reflejo-agua)" stroke-linecap="round" fill="none">
+          <path d="M550,615 Q575,620 590,615" stroke-width="2.5" opacity="0.75"/>
+          <path d="M585,655 Q620,662 650,655" stroke-width="3" opacity="0.8"/>
+          <path d="M560,705 Q615,715 665,705" stroke-width="3.5" opacity="0.85"/>
+          <path d="M520,760 Q595,772 675,758" stroke-width="4" opacity="0.85"/>
+          <path d="M495,820 Q605,836 725,818" stroke-width="5" opacity="0.9"/>
+          <path d="M485,870 Q625,888 790,868" stroke-width="5.5" opacity="0.9"/>
+        </g>
+      </g>
+
+      <!-- 8. PRIMER PLANO: BOSQUE TUPIDO + CAMPAMENTO CON FOGÓN -->
+      <g class="capa-primer-plano" data-parallax="0.5">
+        <!-- Loma izquierda -->
+        <path d="M-40,735 Q210,675 495,785 L495,900 L-40,900 Z" fill="var(--bosque-frente-suelo)"/>
+        <!-- Loma derecha -->
+        <path d="M760,775 Q1110,665 1480,730 L1480,900 L760,900 Z" fill="var(--bosque-frente-suelo)"/>
+
+        <!-- Árboles grandes en primer plano izquierdo -->
+        <g color="var(--bosque-frente)">
+          <use href="#arbol-coihue" transform="translate(25, 560) scale(2.3)"/>
+          <use href="#arbol-lenga" transform="translate(115, 595) scale(1.9)"/>
+          <use href="#arbol-coihue" transform="translate(195, 580) scale(2.1)"/>
+          <use href="#arbol-lenga" transform="translate(280, 635) scale(1.65)"/>
+          <use href="#arbol-coihue" transform="translate(350, 650) scale(1.5)"/>
+        </g>
+
+        <!-- Árboles grandes en primer plano derecho -->
+        <g color="var(--bosque-frente)">
+          <use href="#arbol-lenga" transform="translate(1045, 645) scale(1.55)"/>
+          <use href="#arbol-coihue" transform="translate(1125, 600) scale(2.0)"/>
+          <use href="#arbol-lenga" transform="translate(1220, 615) scale(1.85)"/>
+          <use href="#arbol-coihue" transform="translate(1315, 565) scale(2.25)"/>
+          <use href="#arbol-coihue" transform="translate(1405, 590) scale(2.05)"/>
+        </g>
+
+        <!-- Carpa de campamento y fogón encendido junto al río -->
+        <g class="campamento-escena" transform="translate(885, 715)">
+          <!-- Halo cálido del fogón (brilla fuerte de noche) -->
+          <circle class="fogon-halo" cx="-45" cy="48" r="55" fill="rgba(255, 146, 43, 0.35)"/>
+          <!-- Carpa -->
+          <polygon points="0,45 42,-8 84,45" fill="#f5922b" stroke="#1b2a20" stroke-width="2.5"/>
+          <polygon points="42,-8 84,45 118,34 74,-14" fill="#d97214" stroke="#1b2a20" stroke-width="2.5"/>
+          <!-- Entrada iluminada de la carpa -->
+          <polygon class="carpa-luz" points="42,8 24,45 60,45" fill="#ffe17d"/>
+          <!-- Fogón -->
+          <g transform="translate(-45, 48)">
+            <rect x="-14" y="4" width="28" height="6" rx="3" fill="#4a2e1b" transform="rotate(-15)"/>
+            <rect x="-14" y="4" width="28" height="6" rx="3" fill="#3a2212" transform="rotate(15)"/>
+            <path class="llama-ext" d="M0,-22 C12,-10 14,4 0,6 C-14,4 -12,-10 0,-22 Z" fill="#ff6b2b"/>
+            <path class="llama-int" d="M0,-14 C7,-6 8,3 0,5 C-8,3 -7,-6 0,-14 Z" fill="#ffd23f"/>
+          </g>
+        </g>
+
+        <!-- Luciérnagas / chispas flotantes nocturnas -->
+        <g class="luciernagas" fill="#ffe97d">
+          <circle cx="260" cy="720" r="2.5" class="luciernaga l1"/>
+          <circle cx="390" cy="755" r="2" class="luciernaga l2"/>
+          <circle cx="820" cy="735" r="2.8" class="luciernaga l3"/>
+          <circle cx="980" cy="690" r="2.2" class="luciernaga l1"/>
+          <circle cx="640" cy="770" r="2.4" class="luciernaga l2"/>
+        </g>
+      </g>
+    </svg>
+  </div>
 
   <div class="hero-grid">
     <div class="hero-texto" id="heroContenido">
@@ -62,13 +318,13 @@
         <span class="palabra" aria-hidden="true"><span class="lt c-rojo" style="--i:8">A</span><span class="lt c-azul" style="--i:9">v</span><span class="lt c-violeta" style="--i:10">e</span><span class="lt c-rosa" style="--i:11">n</span><span class="lt c-verde" style="--i:12">t</span><span class="lt c-amarillo" style="--i:13">u</span><span class="lt c-naranja" style="--i:14">r</span><span class="lt c-cian" style="--i:15">a</span><span class="lt c-rojo" style="--i:16">s</span></span>
       </h1>
 
-      <p class="sub">Una colonia para explorar, crear, equivocarse y volver a intentar. Días al aire libre, amigos nuevos y muchas historias para contar.</p>
+      <p class="sub">Una colonia en pleno bosque fueguino para explorar, crear, equivocarse y volver a intentar. Días al aire libre entre montañas y ríos, amigos nuevos y muchas historias para contar.</p>
 
       <ul class="hero-chips">
         <li>👧 6 a 12 años</li>
         <li>🗓️ Lunes a viernes</li>
         <li>🕗 Horarios flexibles</li>
-        <li id="chipCupos">🎟️ Consultá cupos</li>
+        <li id="chipCupos" class="chip-destacado">🎟️ Consultá cupos</li>
       </ul>
 
       <div class="hero-botones">
@@ -112,24 +368,25 @@
 </section>
 
 <!-- ===== SOBRE NOSOTROS ===== -->
-    <section class="sobre" id="sobre">
-      <div class="container sobre-grid">
-        <div class="reveal">
-          <span class="eyebrow">Quiénes somos</span>
-          <h2 class="titulo">Un lugar para crecer al aire libre</h2>
-          <p class="lead">Tierra de Aventuras funciona dentro del Centro Recreativo Nueva Era, con educadores, guías y coordinadores que acompañan cada día de la colonia.</p>
-          <p class="lead">Armamos grupos por edad, actividades que cambian cada semana y un espacio donde cada chico o chica se anima a probar cosas nuevas a su ritmo.</p>
-          <div class="stats">
-            <div class="stat"><b data-count="350">0</b><span>chicos por temporada</span></div>
-            <div class="stat"><b data-count="12">0</b><span>actividades semanales</span></div>
-            <div class="stat"><b data-count="8">0</b><span>años de experiencia</span></div>
-          </div>
-        </div>
-        <div class="sobre-visual reveal foto-lema" id="sobreVisual">
-          <div class="etiqueta"><strong>Nuestro lema:</strong> “Naturaleza que inspira, convivencia que une y aventuras que compartimos en equipo.”</div>
-        </div>
+<section class="sobre" id="sobre">
+  <div class="container sobre-grid">
+    <div class="reveal">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2 class="titulo">Un lugar para crecer en la naturaleza fueguina</h2>
+      <p class="lead">Tierra de Aventuras funciona dentro del Centro Recreativo Nueva Era, con educadores, guías y coordinadores que acompañan cada día de la colonia.</p>
+      <p class="lead">Armamos grupos por edad, actividades que cambian cada semana y un espacio donde cada chico o chica se anima a probar cosas nuevas a su ritmo.</p>
+      <div class="stats">
+        <div class="stat"><b data-count="350">0</b><span>chicos por temporada</span></div>
+        <div class="stat"><b data-count="12">0</b><span>actividades semanales</span></div>
+        <div class="stat"><b data-count="8">0</b><span>años de experiencia</span></div>
       </div>
-    </section>
+    </div>
+    <div class="sobre-visual reveal foto-lema" id="sobreVisual">
+      <div class="etiqueta"><strong>Nuestro lema:</strong> “Naturaleza que inspira, convivencia que une y aventuras que compartimos en equipo.”</div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== ACTIVIDADES ===== -->
 <section class="actividades" id="actividades">
   <div class="container">
@@ -138,49 +395,56 @@
         <span class="eyebrow">Actividades</span>
         <h2 class="titulo">Pasá cada día<br>de una forma distinta</h2>
       </div>
-      <p>Cada rincón de la colonia propone una experiencia única.</p>
+      <p class="head-sub">Cada rincón del bosque y de la colonia propone una experiencia única.</p>
     </div>
     <div class="bento-actividades">
-      <article class="card-actividad reveal" style="--img: url('assets/cocina.png')">
+      <article class="card-actividad card-destacada reveal" data-tilt style="--img: url('assets/caminatas.png')">
+        <div class="card-contenido">
+          <span class="tag">Senderos y Montaña</span>
+          <h3>Caminatas</h3>
+          <p>Recorridos guiados por el bosque andino, reconociendo flora, fauna y miradores del valle.</p>
+        </div>
+      </article>
+      <article class="card-actividad reveal" data-tilt style="--img: url('assets/cocina.png')">
         <div class="card-contenido">
           <span class="tag">Taller</span>
           <h3>Cocina</h3>
+          <p>Recetas ricas y saludables amasadas en equipo.</p>
         </div>
       </article>
-      <article class="card-actividad reveal" style="--img: url('assets/caminatas.png')">
-        <div class="card-contenido">
-          <span class="tag">Aventura</span>
-          <h3>Caminatas</h3>
-        </div>
-      </article>
-      <article class="card-actividad reveal" style="--img: url('assets/campamentos.png')">
+      <article class="card-actividad reveal" data-tilt style="--img: url('assets/campamentos.png')">
         <div class="card-contenido">
           <span class="tag">Naturaleza</span>
           <h3>Campamentos</h3>
+          <p>Armado de carpas, nudos, fogón e historias.</p>
         </div>
       </article>
-      <article class="card-actividad reveal" style="--img: url('assets/exploracion.png')">
+      <article class="card-actividad reveal" data-tilt style="--img: url('assets/exploracion.png')">
         <div class="card-contenido">
           <span class="tag">Aire libre</span>
           <h3>Exploración</h3>
+          <p>Búsqueda del tesoro, orientación y pistas en el bosque.</p>
         </div>
       </article>
-      <article class="card-actividad reveal" style="--img: url('assets/deporte_al_aire_libre.png')">
+      <article class="card-actividad reveal" data-tilt style="--img: url('assets/deporte_al_aire_libre.png')">
         <div class="card-contenido">
           <span class="tag">Movimiento</span>
           <h3>Deporte al aire libre</h3>
+          <p>Juegos cooperativos, circuitos y desafíos grupales.</p>
         </div>
       </article>
-      <article class="card-actividad reveal" style="--img: url('assets/manualidades.png')">
+      <article class="card-actividad reveal" data-tilt style="--img: url('assets/manualidades.png')">
         <div class="card-contenido">
           <span class="tag">Creatividad</span>
           <h3>Manualidades</h3>
+          <p>Construcción con elementos naturales y reciclados.</p>
         </div>
       </article>
-      <article class="card-actividad reveal" style="--img: url('assets/arte.png')">
+      <article class="card-actividad card-destacada reveal" data-tilt style="--img: url('assets/arte.png')">
         <div class="card-contenido">
           <span class="tag">Expresión</span>
-          <h3>Arte</h3>
+          <h3>Arte y Murales</h3>
+          <p>Pintura, música, teatro y proyectos colectivos inspirados en los paisajes de Tierra del Fuego.</p>
         </div>
       </article>
     </div>
@@ -192,7 +456,7 @@
   <div class="container">
     <span class="eyebrow">Turnos</span>
     <h2 class="titulo reveal">Elegí cómo vivir la colonia</h2>
-    <p class="lead reveal">Tres formas de sumarte a la aventura. Los cupos se actualizan en tiempo real.</p>
+    <p class="lead reveal">Tres formas de sumarte a la aventura. Consultá la disponibilidad de cada turno.</p>
     <p class="aviso-flex reveal">⏰ <span>Los horarios son <b>flexibles</b>: podemos coordinar entradas y salidas según tu familia. Consultanos.</span></p>
     <div class="semanas-grid" id="semanasGrid"></div>
   </div>
@@ -204,7 +468,7 @@
     <div class="head-flex reveal">
       <div>
         <span class="eyebrow">Galería</span>
-        <h2 class="titulo">Momentos de la colonia</h2>
+        <h2 class="titulo">Momentos en el bosque</h2>
       </div>
       <div class="buscador">
         <label for="buscarFoto" class="sr-only">Buscar foto</label>
@@ -213,10 +477,10 @@
     </div>
     <div class="filtros reveal" id="filtros" role="group" aria-label="Filtrar galería">
       <button class="filtro activo" data-filtro="todas">Todas</button>
-      <button class="filtro" data-filtro="aire">Aire libre</button>
-      <button class="filtro" data-filtro="agua">Agua</button>
-      <button class="filtro" data-filtro="arte">Arte</button>
-      <button class="filtro" data-filtro="noche">Noche</button>
+      <button class="filtro" data-filtro="aire">Bosque y montaña</button>
+      <button class="filtro" data-filtro="agua">Río y juegos</button>
+      <button class="filtro" data-filtro="arte">Arte y cocina</button>
+      <button class="filtro" data-filtro="noche">Campamento y fogón</button>
       <button class="filtro" data-filtro="favoritas">♥ Favoritas</button>
     </div>
     <div class="masonry" id="masonry"></div>
@@ -242,29 +506,30 @@
   <div class="container">
     <span class="eyebrow">Un día en la colonia</span>
     <h2 class="titulo reveal">Así late una jornada en Tierra de Aventuras</h2>
-    <p class="lead reveal">Ejemplo de jornada completa (9 a 17 hs). Los horarios son orientativos y se adaptan a cada grupo.</p>
+    <p class="lead reveal">Ejemplo de jornada completa (9 a 17 hs). Los horarios son orientativos y se adaptan al clima y a cada grupo.</p>
 
     <div class="dia-grid">
       <div class="timeline">
-        <div class="paso"><time>9:00</time><h3><span aria-hidden="true">🤝</span> Llegada y ronda de bienvenida</h3><p>Se arman los grupos y los guías se presentan. Los chicos eligen su nombre de equipo.</p></div>
-        <div class="paso"><time>9:30</time><h3><span aria-hidden="true">🥐</span> Desayuno compartido</h3><p>Pan, fruta, leche y mate cocido en la mesa del grupo.</p></div>
-        <div class="paso"><time>10:00</time><h3><span aria-hidden="true">🧗</span> Aventura de la mañana</h3><p>Rocódromo, tirolesa o senderismo, según el día y la edad del grupo.</p></div>
-        <div class="paso"><time>12:00</time><h3><span aria-hidden="true">🎨</span> Taller creativo</h3><p>Arte, ciencia o teatro. Cada chico se lleva algo hecho con sus manos.</p></div>
-        <div class="paso"><time>13:00</time><h3><span aria-hidden="true">🍝</span> Almuerzo al aire libre</h3><p>Comida compartida. Avisanos si tu hijo o hija tiene alergias o una dieta especial.</p></div>
-        <div class="paso"><time>14:00</time><h3><span aria-hidden="true">😴</span> Descanso y juego libre</h3><p>Tiempo para leer, dibujar, charlar o no hacer nada.</p></div>
-        <div class="paso"><time>15:00</time><h3><span aria-hidden="true">🏊</span> Pileta o juegos de agua</h3><p>Competencias por equipos y natación guiada.</p></div>
-        <div class="paso"><time>16:30</time><h3><span aria-hidden="true">🥪</span> Merienda</h3><p>Algo rico y fresco para recuperar energía.</p></div>
-        <div class="paso"><time>17:00</time><h3><span aria-hidden="true">🌟</span> Ronda de historias y salida</h3><p>Cada grupo cuenta lo mejor de su día antes de volver a casa.</p></div>
+        <div class="paso"><time>9:00</time><h3><span aria-hidden="true">🤝</span> Llegada y ronda de bienvenida</h3><p>Nos encontramos en el refugio, se arman los grupos y los guías presentan el desafío del día.</p></div>
+        <div class="paso"><time>9:30</time><h3><span aria-hidden="true">🥐</span> Desayuno compartido</h3><p>Pan casero, fruta, leche y mate cocido calentito para cargar energía.</p></div>
+        <div class="paso"><time>10:00</time><h3><span aria-hidden="true">🥾</span> Expedición al bosque</h3><p>Caminatas por senderos de lengas, circuitos de exploración o juegos en la montaña.</p></div>
+        <div class="paso"><time>12:00</time><h3><span aria-hidden="true">🎨</span> Taller creativo o cocina</h3><p>Arte, manualidades, panadería o construcción de refugios. Cada chico crea con sus manos.</p></div>
+        <div class="paso"><time>13:00</time><h3><span aria-hidden="true">🍝</span> Almuerzo en equipo</h3><p>Comida compartida. Avisanos si tu hijo o hija tiene alergias o una dieta especial.</p></div>
+        <div class="paso"><time>14:00</time><h3><span aria-hidden="true">🌿</span> Descanso y juego libre</h3><p>Tiempo tranquilo para leer, dibujar, charlar bajo los árboles o inventar juegos.</p></div>
+        <div class="paso"><time>15:00</time><h3><span aria-hidden="true">⛺</span> Gran juego de aventura</h3><p>Búsqueda del tesoro, posta deportiva al aire libre o taller de campamento.</p></div>
+        <div class="paso"><time>16:30</time><h3><span aria-hidden="true">🥪</span> Merienda campestre</h3><p>Algo rico para recuperar fuerzas después de toda la acción de la tarde.</p></div>
+        <div class="paso"><time>17:00</time><h3><span aria-hidden="true">🌟</span> Ronda de historias y salida</h3><p>Cada grupo comparte lo mejor de su día antes de reencontrarse con las familias.</p></div>
       </div>
 
       <aside class="dia-aside reveal" aria-label="Qué llevar">
         <h3>Tu mochila ideal</h3>
         <ul>
-          <li>Ropa cómoda y calzado cerrado</li>
-          <li>Gorra y protector solar</li>
-          <li>Botella de agua con nombre</li>
-          <li>Una muda extra para la pileta</li>
-          <li>Ganas de jugar</li>
+          <li>Ropa cómoda en capas (tipo cebolla)</li>
+          <li>Calzado cerrado o de trekking</li>
+          <li>Campera impermeable / rompeviento</li>
+          <li>Gorra, protector solar y botella con nombre</li>
+          <li>Una muda extra en la mochila</li>
+          <li>¡Muchas ganas de explorar!</li>
         </ul>
         <p class="nota">Los turnos de mañana y tarde comparten el mismo espíritu, con actividades adaptadas a cada franja horaria.</p>
       </aside>
@@ -276,8 +541,8 @@
 <section class="quiz" id="quiz">
   <div class="container">
     <span class="eyebrow">Quiz</span>
-    <h2 class="titulo reveal">¿Qué aventura te toca?</h2>
-    <p class="lead reveal">Respondé tres preguntas y te decimos qué parte de la colonia te va a encantar.</p>
+    <h2 class="titulo reveal">¿Qué aventura del bosque te toca?</h2>
+    <p class="lead reveal">Respondé tres preguntas y descubrí qué rincón de la colonia va más con vos.</p>
     <div class="quiz-caja reveal" id="quizBox" aria-live="polite"></div>
   </div>
 </section>
@@ -287,11 +552,11 @@
   <div class="container">
     <span class="eyebrow">Pasaporte de aventuras</span>
     <h2 class="titulo reveal">Explorá la página y conseguí tus sellos</h2>
-    <p class="lead reveal">Cada sección que recorrés te da un sello. Juntá los siete y llevate tu pasaporte para compartir.</p>
+    <p class="lead reveal">Cada sección que recorrés durante unos segundos te da un sello. Juntá los siete y descargá tu pasaporte oficial de explorador.</p>
 
     <div class="pasaporte-caja reveal">
       <div class="pasaporte-progreso" aria-hidden="true"><div id="pasaporteBarra"></div></div>
-      <p class="pasaporte-contador"><b id="pasaporteN">0</b> / 7 sellos</p>
+      <p class="pasaporte-contador"><b id="pasaporteN">0</b> / 7 sellos obtenidos</p>
 
       <ol class="sellos" id="sellos" aria-label="Sellos del pasaporte"></ol>
 
@@ -314,15 +579,15 @@
     <h2 class="titulo reveal">Lo que dicen las familias</h2>
     <div class="slider" id="slider">
       <div class="slide activo">
-        <blockquote>“Mi hijo volvió con amigos nuevos y ganas de hacer cosas. Cada día nos contaba algo distinto.”</blockquote>
+        <blockquote>“Mi hijo volvió fascinado con las caminatas por el bosque y los amigos nuevos. Cada tarde nos contaba una aventura distinta.”</blockquote>
         <div class="autor"><div class="avatar">M</div><div>María G.<small>Mamá de Tomás, 9 años</small></div></div>
       </div>
       <div class="slide">
-        <blockquote>“Los monitores se preocupan de verdad por cada chico. Se nota en cómo los acompañan.”</blockquote>
+        <blockquote>“Los profes y coordinadores se preocupan de verdad por cada chico. Se nota el amor por la naturaleza y cómo los cuidan.”</blockquote>
         <div class="autor"><div class="avatar">J</div><div>Julián R.<small>Papá de Sol, 12 años</small></div></div>
       </div>
       <div class="slide">
-        <blockquote>“Tenía miedo a la tirolesa y terminó siendo lo que más le gustó del verano.”</blockquote>
+        <blockquote>“Los talleres de cocina y campamento fueron inolvidables. Volvió a casa queriendo armar la carpa en el patio.”</blockquote>
         <div class="autor"><div class="avatar">L</div><div>Laura P.<small>Mamá de Ian, 11 años</small></div></div>
       </div>
     </div>
@@ -342,23 +607,23 @@
     <div class="faq-lista reveal">
       <details>
         <summary>¿A qué edad está dirigida la colonia?</summary>
-        <p>Recibimos chicos y chicas de 6 a 12 años, agrupados por edad para que las actividades sean adecuadas.</p>
+        <p>Recibimos chicos y chicas de 6 a 12 años, agrupados por edades para que los juegos, senderos y talleres sean adecuados a cada etapa.</p>
       </details>
       <details>
-        <summary>¿Qué tengo que llevar cada día?</summary>
-        <p>Ropa cómoda, calzado cerrado, protector solar, gorra, botella de agua y una muda extra para la pileta.</p>
+        <summary>¿Qué tienen que llevar en la mochila?</summary>
+        <p>Ropa cómoda en capas, calzado cerrado para caminar, campera rompeviento/impermeable, gorra, protector solar, botella de agua con nombre y una muda extra.</p>
       </details>
       <details>
-        <summary>¿Hay servicio de almuerzo?</summary>
-        <p>Sí, el almuerzo se comparte al aire libre. Avisanos si tu hijo o hija tiene alergias o una dieta especial.</p>
+        <summary>¿Qué pasa si llueve o refresca?</summary>
+        <p>El Centro Recreativo Nueva Era cuenta con amplios espacios cubiertos y calefaccionados para realizar talleres de cocina, arte, juegos y teatro cuando el clima no permite salir al bosque.</p>
+      </details>
+      <details>
+        <summary>¿Hay servicio de desayuno, almuerzo y merienda?</summary>
+        <p>Sí, compartimos las comidas en la colonia según el turno elegido. Avisanos en el formulario si tu hijo o hija tiene alergias o una dieta especial.</p>
       </details>
       <details>
         <summary>¿Cómo se confirma la inscripción?</summary>
-        <p>Completás el formulario y te escribimos para confirmar el cupo. Los lugares se asignan por orden de llegada.</p>
-      </details>
-      <details>
-        <summary>¿Puedo cancelar si cambian mis planes?</summary>
-        <p>Sí. Las condiciones de cancelación y reintegro se confirman junto con el pago.</p>
+        <p>Completás el formulario y nos comunicamos por WhatsApp o email para confirmar el cupo y enviarte los detalles de pago. Los lugares se asignan por orden de inscripción.</p>
       </details>
     </div>
   </div>
@@ -370,24 +635,24 @@
     <div class="reveal">
       <span class="eyebrow">Inscripción</span>
       <h2 class="titulo">Reservá el lugar<br>de tu hijo o hija</h2>
-      <p class="lead">Completá el formulario y te contactamos para confirmar. Los cupos son limitados por semana.</p>
+      <p class="lead">Completá el formulario y te contactamos para confirmar. Los cupos son limitados por turno para garantizar el cuidado de cada grupo.</p>
       <ul class="datos">
         <li><span>Edades</span><span>6 a 12 años</span></li>
         <li><span>Horario</span><span>Turnos de 9 a 17 hs (flexible)</span></li>
         <li><span>Lugar</span><span>Centro Recreativo Nueva Era (Ushuaia)</span></li>
-        <li><span>Precio</span><span>A confirmar</span></li>
+        <li><span>Temporada</span><span>Verano 2027</span></li>
       </ul>
     </div>
 
     <div class="reveal">
       <form class="form" id="form" novalidate>
-        <div class="progreso" aria-hidden="true">
+        <div class="progreso">
           <div id="barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progreso del formulario"></div>
         </div>
         <div id="formContenido" class="campos">
           <div class="campo">
             <label for="nombre">Nombre del niño o niña</label>
-            <input id="nombre" name="nombre" autocomplete="off" required>
+            <input id="nombre" name="nombre" autocomplete="off" required placeholder="Ej: Mateo">
             <span class="error" aria-live="polite"></span>
           </div>
           <div class="campo">
@@ -401,7 +666,7 @@
           </div>
           <div class="campo completo">
             <label for="email">Email de contacto</label>
-            <input id="email" name="email" type="email" required>
+            <input id="email" name="email" type="email" required placeholder="familia@ejemplo.com">
             <span class="error" aria-live="polite"></span>
           </div>
           <div class="campo">
@@ -415,13 +680,13 @@
             <span class="error" aria-live="polite"></span>
           </div>
           <div class="campo">
-            <label for="telefono">Teléfono</label>
-            <input id="telefono" name="telefono" type="tel" placeholder="+54 9 ...">
+            <label for="telefono">Teléfono / WhatsApp</label>
+            <input id="telefono" name="telefono" type="tel" placeholder="+54 9 2901 ...">
             <span class="error" aria-live="polite"></span>
           </div>
           <div class="campo completo">
-            <label for="notas">Alergias, medicación o notas</label>
-            <textarea id="notas" name="notas" rows="3"></textarea>
+            <label for="notas">Alergias, alimentación o notas importantes</label>
+            <textarea id="notas" name="notas" rows="3" placeholder="Contanos si necesita alguna atención especial..."></textarea>
           </div>
           <div class="campo completo">
             <button type="submit" class="btn btn-primario">Enviar inscripción →</button>
@@ -432,7 +697,7 @@
           <div class="check" aria-hidden="true">✓</div>
           <h3>¡Recibimos tu inscripción!</h3>
           <p>Te vamos a escribir a <strong id="emailConfirm"></strong> para confirmar el cupo.</p>
-          <button class="btn btn-fantasma btn-sm" id="icsBtn2">📅 Agregar al calendario</button>
+          <button type="button" class="btn btn-fantasma btn-sm" id="icsBtn2">📅 Agregar al calendario</button>
         </div>
       </form>
     </div>
@@ -447,11 +712,11 @@
     <div class="footer-grid">
       <div>
         <img class="footer-logo" src="assets/logo-tierra-de-aventuras.png" alt="Tierra de Aventuras">
-        <p>Colonia de vacaciones del Centro Recreativo Nueva Era.</p>
+        <p>Colonia de vacaciones en la naturaleza fueguina, organizada por el Centro Recreativo Nueva Era.</p>
         <div class="redes">
-          <a href="#" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="WhatsApp">✆</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://wa.me/5492901000000" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
         </div>
       </div>
       <div>
