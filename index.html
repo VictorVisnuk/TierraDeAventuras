@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es-AR" data-theme="claro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tierra de Aventuras | Centro Recreativo Nueva Era</title>
+  <meta name="description" content="Colonia de vacaciones Tierra de Aventuras en el Centro Recreativo Nueva Era, Ushuaia.">
+  <meta name="theme-color" content="#f5922b">
+  <link rel="icon" href="assets/logo-tierra-de-aventuras.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <a href="#inicio" class="nav-logo" aria-label="Inicio">
+    <img src="assets/logo-tierra-de-aventuras.png" alt="Tierra de Aventuras">
+  </a>
+  <nav aria-label="Principal">
+    <ul id="menu">
+      <li><a href="#sobre">Nosotros</a></li>
+      <li><a href="#actividades">Actividades</a></li>
+      <li><a href="#semanas">Turnos</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#dia">Un día</a></li>
+      <li><a href="#pasaporte">Pasaporte</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#faq">Preguntas</a></li>
+    </ul>
+  </nav>
+  <div class="nav-acciones">
+    <button class="icon-btn" id="themeBtn" aria-label="Cambiar tema">🌙</button>
+    <button class="icon-btn" id="shareBtn" aria-label="Compartir">↗</button>
+    <a href="#reserva" class="btn btn-primario btn-sm">Inscribirme</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-sol" aria-hidden="true"></div>
+  <div class="hero-capas" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  <div class="hero-grid">
+    <div class="hero-texto" id="heroContenido">
+      <p class="hero-kicker">
+        <img src="assets/logo-nueva-era.png" alt="" aria-hidden="true">
+        Organiza el Centro Recreativo Nueva Era
+      </p>
+
+      <h1 class="hero-titulo" aria-label="Tierra de Aventuras">
+        <span class="palabra" aria-hidden="true"><span class="lt c-cian" style="--i:0">T</span><span class="lt c-rosa" style="--i:1">i</span><span class="lt c-verde" style="--i:2">e</span><span class="lt c-naranja" style="--i:3">r</span><span class="lt c-azul" style="--i:4">r</span><span class="lt c-rojo" style="--i:5">a</span></span>
+        <span class="de" aria-hidden="true"><span class="lt c-violeta" style="--i:6">d</span><span class="lt c-amarillo" style="--i:7">e</span></span>
+        <br>
+        <span class="palabra" aria-hidden="true"><span class="lt c-rojo" style="--i:8">A</span><span class="lt c-azul" style="--i:9">v</span><span class="lt c-violeta" style="--i:10">e</span><span class="lt c-rosa" style="--i:11">n</span><span class="lt c-verde" style="--i:12">t</span><span class="lt c-amarillo" style="--i:13">u</span><span class="lt c-naranja" style="--i:14">r</span><span class="lt c-cian" style="--i:15">a</span><span class="lt c-rojo" style="--i:16">s</span></span>
+      </h1>
+
+      <p class="sub">Una colonia para explorar, crear, equivocarse y volver a intentar. Días al aire libre, amigos nuevos y muchas historias para contar.</p>
+
+      <ul class="hero-chips">
+        <li>👧 6 a 12 años</li>
+        <li>🗓️ Lunes a viernes</li>
+        <li>🕗 Horarios flexibles</li>
+        <li id="chipCupos">🎟️ Consultá cupos</li>
+      </ul>
+
+      <div class="hero-botones">
+        <a href="#reserva" class="btn btn-primario">Inscribite ahora →</a>
+        <a href="#galeria" class="btn btn-fantasma">Mirá la galería</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel" aria-label="Próxima temporada y ubicación">
+      <div class="hero-cuenta" id="cuenta">
+        <div class="cuenta-top">
+          <p class="banner">Próxima temporada: <span id="temporadaNombre"></span></p>
+          <button class="btn btn-fantasma btn-sm" id="icsBtn">📅 Agendar</button>
+        </div>
+        <div class="countdown" aria-label="Tiempo restante para la temporada">
+          <div><b id="cd-d">--</b><small>días</small></div>
+          <div><b id="cd-h">--</b><small>horas</small></div>
+          <div><b id="cd-m">--</b><small>min</small></div>
+          <div><b id="cd-s">--</b><small>seg</small></div>
+        </div>
+      </div>
+
+      <figure class="hero-mapa">
+        <iframe
+          title="Mapa: Centro Recreativo Nueva Era en Ushuaia"
+          loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-68.3110%2C-54.7821%2C-68.2710%2C-54.7521&amp;layer=mapnik&amp;marker=-54.767105626303064%2C-68.29101893799862">
+        </iframe>
+        <figcaption class="mapa-info">
+          <div>
+            <strong>Centro Recreativo Nueva Era</strong>
+            <span>Cno. del Valle 3500, Ushuaia</span>
+          </div>
+          <a href="https://www.openstreetmap.org/?mlat=-54.767105626303064&amp;mlon=-68.29101893799862#map=15/-54.767105626303064/-68.29101893799862" target="_blank" rel="noopener">Cómo llegar ↗</a>
+        </figcaption>
+      </figure>
+    </aside>
+  </div>
+
+  <a href="#sobre" class="scroll-hint" aria-label="Bajar a la siguiente sección"></a>
+</section>
+
+<!-- ===== SOBRE NOSOTROS ===== -->
+    <section class="sobre" id="sobre">
+      <div class="container sobre-grid">
+        <div class="reveal">
+          <span class="eyebrow">Quiénes somos</span>
+          <h2 class="titulo">Un lugar para crecer al aire libre</h2>
+          <p class="lead">Tierra de Aventuras funciona dentro del Centro Recreativo Nueva Era, con educadores, guías y coordinadores que acompañan cada día de la colonia.</p>
+          <p class="lead">Armamos grupos por edad, actividades que cambian cada semana y un espacio donde cada chico o chica se anima a probar cosas nuevas a su ritmo.</p>
+          <div class="stats">
+            <div class="stat"><b data-count="350">0</b><span>chicos por temporada</span></div>
+            <div class="stat"><b data-count="12">0</b><span>actividades semanales</span></div>
+            <div class="stat"><b data-count="8">0</b><span>años de experiencia</span></div>
+          </div>
+        </div>
+        <div class="sobre-visual reveal foto-lema" id="sobreVisual">
+          <div class="etiqueta"><strong>Nuestro lema:</strong> “Naturaleza que inspira, convivencia que une y aventuras que compartimos en equipo.”</div>
+        </div>
+      </div>
+    </section>
+<!-- ===== ACTIVIDADES ===== -->
+<section class="actividades" id="actividades">
+  <div class="container">
+    <div class="head-flex reveal">
+      <div>
+        <span class="eyebrow">Actividades</span>
+        <h2 class="titulo">Pasá cada día<br>de una forma distinta</h2>
+      </div>
+      <p>Cada rincón de la colonia propone una experiencia única.</p>
+    </div>
+    <div class="bento-actividades">
+      <article class="card-actividad reveal" style="--img: url('assets/cocina.png')">
+        <div class="card-contenido">
+          <span class="tag">Taller</span>
+          <h3>Cocina</h3>
+        </div>
+      </article>
+      <article class="card-actividad reveal" style="--img: url('assets/caminatas.png')">
+        <div class="card-contenido">
+          <span class="tag">Aventura</span>
+          <h3>Caminatas</h3>
+        </div>
+      </article>
+      <article class="card-actividad reveal" style="--img: url('assets/campamentos.png')">
+        <div class="card-contenido">
+          <span class="tag">Naturaleza</span>
+          <h3>Campamentos</h3>
+        </div>
+      </article>
+      <article class="card-actividad reveal" style="--img: url('assets/exploracion.png')">
+        <div class="card-contenido">
+          <span class="tag">Aire libre</span>
+          <h3>Exploración</h3>
+        </div>
+      </article>
+      <article class="card-actividad reveal" style="--img: url('assets/deporte_al_aire_libre.png')">
+        <div class="card-contenido">
+          <span class="tag">Movimiento</span>
+          <h3>Deporte al aire libre</h3>
+        </div>
+      </article>
+      <article class="card-actividad reveal" style="--img: url('assets/manualidades.png')">
+        <div class="card-contenido">
+          <span class="tag">Creatividad</span>
+          <h3>Manualidades</h3>
+        </div>
+      </article>
+      <article class="card-actividad reveal" style="--img: url('assets/arte.png')">
+        <div class="card-contenido">
+          <span class="tag">Expresión</span>
+          <h3>Arte</h3>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TURNOS ===== -->
+<section class="semanas" id="semanas">
+  <div class="container">
+    <span class="eyebrow">Turnos</span>
+    <h2 class="titulo reveal">Elegí cómo vivir la colonia</h2>
+    <p class="lead reveal">Tres formas de sumarte a la aventura. Los cupos se actualizan en tiempo real.</p>
+    <p class="aviso-flex reveal">⏰ <span>Los horarios son <b>flexibles</b>: podemos coordinar entradas y salidas según tu familia. Consultanos.</span></p>
+    <div class="semanas-grid" id="semanasGrid"></div>
+  </div>
+</section>
+
+<!-- ===== GALERÍA ===== -->
+<section class="galeria" id="galeria">
+  <div class="container">
+    <div class="head-flex reveal">
+      <div>
+        <span class="eyebrow">Galería</span>
+        <h2 class="titulo">Momentos de la colonia</h2>
+      </div>
+      <div class="buscador">
+        <label for="buscarFoto" class="sr-only">Buscar foto</label>
+        <input id="buscarFoto" type="search" placeholder="Buscar momento…" autocomplete="off">
+      </div>
+    </div>
+    <div class="filtros reveal" id="filtros" role="group" aria-label="Filtrar galería">
+      <button class="filtro activo" data-filtro="todas">Todas</button>
+      <button class="filtro" data-filtro="aire">Aire libre</button>
+      <button class="filtro" data-filtro="agua">Agua</button>
+      <button class="filtro" data-filtro="arte">Arte</button>
+      <button class="filtro" data-filtro="noche">Noche</button>
+      <button class="filtro" data-filtro="favoritas">♥ Favoritas</button>
+    </div>
+    <div class="masonry" id="masonry"></div>
+    <p class="galeria-vacia" id="galeriaVacia" hidden>No hay fotos que coincidan con la búsqueda.</p>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de fotos">
+    <button class="lb-cerrar" id="lbCerrar" aria-label="Cerrar">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+    <div class="lb-img" id="lbImg">
+      <h4 id="lbTitulo"></h4>
+    </div>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Siguiente">›</button>
+    <div class="lb-barra">
+      <span class="lb-contador" id="lbContador"></span>
+      <button class="lb-fav" id="lbFav" aria-pressed="false">♡ Me gusta</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UN DÍA EN LA COLONIA ===== -->
+<section class="dia" id="dia">
+  <div class="container">
+    <span class="eyebrow">Un día en la colonia</span>
+    <h2 class="titulo reveal">Así late una jornada en Tierra de Aventuras</h2>
+    <p class="lead reveal">Ejemplo de jornada completa (9 a 17 hs). Los horarios son orientativos y se adaptan a cada grupo.</p>
+
+    <div class="dia-grid">
+      <div class="timeline">
+        <div class="paso"><time>9:00</time><h3><span aria-hidden="true">🤝</span> Llegada y ronda de bienvenida</h3><p>Se arman los grupos y los guías se presentan. Los chicos eligen su nombre de equipo.</p></div>
+        <div class="paso"><time>9:30</time><h3><span aria-hidden="true">🥐</span> Desayuno compartido</h3><p>Pan, fruta, leche y mate cocido en la mesa del grupo.</p></div>
+        <div class="paso"><time>10:00</time><h3><span aria-hidden="true">🧗</span> Aventura de la mañana</h3><p>Rocódromo, tirolesa o senderismo, según el día y la edad del grupo.</p></div>
+        <div class="paso"><time>12:00</time><h3><span aria-hidden="true">🎨</span> Taller creativo</h3><p>Arte, ciencia o teatro. Cada chico se lleva algo hecho con sus manos.</p></div>
+        <div class="paso"><time>13:00</time><h3><span aria-hidden="true">🍝</span> Almuerzo al aire libre</h3><p>Comida compartida. Avisanos si tu hijo o hija tiene alergias o una dieta especial.</p></div>
+        <div class="paso"><time>14:00</time><h3><span aria-hidden="true">😴</span> Descanso y juego libre</h3><p>Tiempo para leer, dibujar, charlar o no hacer nada.</p></div>
+        <div class="paso"><time>15:00</time><h3><span aria-hidden="true">🏊</span> Pileta o juegos de agua</h3><p>Competencias por equipos y natación guiada.</p></div>
+        <div class="paso"><time>16:30</time><h3><span aria-hidden="true">🥪</span> Merienda</h3><p>Algo rico y fresco para recuperar energía.</p></div>
+        <div class="paso"><time>17:00</time><h3><span aria-hidden="true">🌟</span> Ronda de historias y salida</h3><p>Cada grupo cuenta lo mejor de su día antes de volver a casa.</p></div>
+      </div>
+
+      <aside class="dia-aside reveal" aria-label="Qué llevar">
+        <h3>Tu mochila ideal</h3>
+        <ul>
+          <li>Ropa cómoda y calzado cerrado</li>
+          <li>Gorra y protector solar</li>
+          <li>Botella de agua con nombre</li>
+          <li>Una muda extra para la pileta</li>
+          <li>Ganas de jugar</li>
+        </ul>
+        <p class="nota">Los turnos de mañana y tarde comparten el mismo espíritu, con actividades adaptadas a cada franja horaria.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section class="quiz" id="quiz">
+  <div class="container">
+    <span class="eyebrow">Quiz</span>
+    <h2 class="titulo reveal">¿Qué aventura te toca?</h2>
+    <p class="lead reveal">Respondé tres preguntas y te decimos qué parte de la colonia te va a encantar.</p>
+    <div class="quiz-caja reveal" id="quizBox" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ===== PASAPORTE DE AVENTURAS ===== -->
+<section class="pasaporte" id="pasaporte">
+  <div class="container">
+    <span class="eyebrow">Pasaporte de aventuras</span>
+    <h2 class="titulo reveal">Explorá la página y conseguí tus sellos</h2>
+    <p class="lead reveal">Cada sección que recorrés te da un sello. Juntá los siete y llevate tu pasaporte para compartir.</p>
+
+    <div class="pasaporte-caja reveal">
+      <div class="pasaporte-progreso" aria-hidden="true"><div id="pasaporteBarra"></div></div>
+      <p class="pasaporte-contador"><b id="pasaporteN">0</b> / 7 sellos</p>
+
+      <ol class="sellos" id="sellos" aria-label="Sellos del pasaporte"></ol>
+
+      <div class="pasaporte-final" id="pasaporteFinal" hidden>
+        <p>🎉 ¡Completaste tu pasaporte! Escribí tu nombre y descargalo.</p>
+        <label for="explorador">Nombre del explorador o exploradora</label>
+        <input id="explorador" maxlength="24" placeholder="Ej: Valentina" autocomplete="off">
+        <button class="btn btn-primario" id="pasaporteDescargar">Descargar mi pasaporte ↓</button>
+      </div>
+
+      <button class="btn-link" id="pasaporteReiniciar">Empezar de nuevo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIOS ===== -->
+<section class="testimonios" id="testimonios">
+  <div class="container">
+    <span class="eyebrow">Testimonios</span>
+    <h2 class="titulo reveal">Lo que dicen las familias</h2>
+    <div class="slider" id="slider">
+      <div class="slide activo">
+        <blockquote>“Mi hijo volvió con amigos nuevos y ganas de hacer cosas. Cada día nos contaba algo distinto.”</blockquote>
+        <div class="autor"><div class="avatar">M</div><div>María G.<small>Mamá de Tomás, 9 años</small></div></div>
+      </div>
+      <div class="slide">
+        <blockquote>“Los monitores se preocupan de verdad por cada chico. Se nota en cómo los acompañan.”</blockquote>
+        <div class="autor"><div class="avatar">J</div><div>Julián R.<small>Papá de Sol, 12 años</small></div></div>
+      </div>
+      <div class="slide">
+        <blockquote>“Tenía miedo a la tirolesa y terminó siendo lo que más le gustó del verano.”</blockquote>
+        <div class="autor"><div class="avatar">L</div><div>Laura P.<small>Mamá de Ian, 11 años</small></div></div>
+      </div>
+    </div>
+    <div class="slider-controles">
+      <button class="icon-btn" id="prevSlide" aria-label="Testimonio anterior">‹</button>
+      <div id="puntos"></div>
+      <button class="icon-btn" id="nextSlide" aria-label="Testimonio siguiente">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2 class="titulo reveal">Todo lo que querés saber</h2>
+    <div class="faq-lista reveal">
+      <details>
+        <summary>¿A qué edad está dirigida la colonia?</summary>
+        <p>Recibimos chicos y chicas de 6 a 12 años, agrupados por edad para que las actividades sean adecuadas.</p>
+      </details>
+      <details>
+        <summary>¿Qué tengo que llevar cada día?</summary>
+        <p>Ropa cómoda, calzado cerrado, protector solar, gorra, botella de agua y una muda extra para la pileta.</p>
+      </details>
+      <details>
+        <summary>¿Hay servicio de almuerzo?</summary>
+        <p>Sí, el almuerzo se comparte al aire libre. Avisanos si tu hijo o hija tiene alergias o una dieta especial.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se confirma la inscripción?</summary>
+        <p>Completás el formulario y te escribimos para confirmar el cupo. Los lugares se asignan por orden de llegada.</p>
+      </details>
+      <details>
+        <summary>¿Puedo cancelar si cambian mis planes?</summary>
+        <p>Sí. Las condiciones de cancelación y reintegro se confirman junto con el pago.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESERVA / INSCRIPCIÓN ===== -->
+<section class="reserva" id="reserva">
+  <div class="container reserva-grid">
+    <div class="reveal">
+      <span class="eyebrow">Inscripción</span>
+      <h2 class="titulo">Reservá el lugar<br>de tu hijo o hija</h2>
+      <p class="lead">Completá el formulario y te contactamos para confirmar. Los cupos son limitados por semana.</p>
+      <ul class="datos">
+        <li><span>Edades</span><span>6 a 12 años</span></li>
+        <li><span>Horario</span><span>Turnos de 9 a 17 hs (flexible)</span></li>
+        <li><span>Lugar</span><span>Centro Recreativo Nueva Era (Ushuaia)</span></li>
+        <li><span>Precio</span><span>A confirmar</span></li>
+      </ul>
+    </div>
+
+    <div class="reveal">
+      <form class="form" id="form" novalidate>
+        <div class="progreso" aria-hidden="true">
+          <div id="barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progreso del formulario"></div>
+        </div>
+        <div id="formContenido" class="campos">
+          <div class="campo">
+            <label for="nombre">Nombre del niño o niña</label>
+            <input id="nombre" name="nombre" autocomplete="off" required>
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="edad">Edad</label>
+            <select id="edad" name="edad" required>
+              <option value="">Elegí</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option>
+              <option>10</option><option>11</option><option>12</option>
+            </select>
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="campo completo">
+            <label for="email">Email de contacto</label>
+            <input id="email" name="email" type="email" required>
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="semana">Jornada / Turno</label>
+            <select id="semana" name="semana" required>
+              <option value="">Elegí un turno</option>
+              <option value="Turno mañana">Turno mañana (9 a 13 hs)</option>
+              <option value="Turno tarde">Turno tarde (13 a 17 hs)</option>
+              <option value="Jornada completa">Jornada completa (9 a 17 hs)</option>
+            </select>
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" name="telefono" type="tel" placeholder="+54 9 ...">
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="campo completo">
+            <label for="notas">Alergias, medicación o notas</label>
+            <textarea id="notas" name="notas" rows="3"></textarea>
+          </div>
+          <div class="campo completo">
+            <button type="submit" class="btn btn-primario">Enviar inscripción →</button>
+          </div>
+        </div>
+
+        <div class="confirmacion" id="confirmacion" aria-live="polite">
+          <div class="check" aria-hidden="true">✓</div>
+          <h3>¡Recibimos tu inscripción!</h3>
+          <p>Te vamos a escribir a <strong id="emailConfirm"></strong> para confirmar el cupo.</p>
+          <button class="btn btn-fantasma btn-sm" id="icsBtn2">📅 Agregar al calendario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/logo-tierra-de-aventuras.png" alt="Tierra de Aventuras">
+        <p>Colonia de vacaciones del Centro Recreativo Nueva Era.</p>
+        <div class="redes">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="WhatsApp">✆</a>
+        </div>
+      </div>
+      <div>
+        <img class="footer-logo-sec" src="assets/logo-nueva-era.png" alt="Centro Recreativo Nueva Era">
+      </div>
+      <div>
+        <p><strong>Contacto</strong></p>
+        <p>Email: contacto@tierradeaventuras.ar</p>
+        <p>Teléfono: +54 9 2901 ...</p>
+        <p>Dirección: Cno. del Valle 3500, Ushuaia</p>
+      </div>
+    </div>
+    <div class="copy">© <span id="anio"></span> Tierra de Aventuras · Centro Recreativo Nueva Era</div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Volver arriba">↑</button>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
